@@ -80,10 +80,14 @@ class Input extends React.Component {
     var file = this.state.inputFile[0];
     var component = this;
     var base_image;
+    var pixel_image;
     var image_name_base = file.name.replace(/\.[^/.]+$/,"");
     console.log(image_name_base);
     Jimp.read(map_base).then((image) => {
       base_image = image.clone();
+    });
+    new Jimp(1,1,'#FFC643', (e, image) => {
+      pixel_image=image.clone();
     });
     reader.onload = function() {
       Jimp.read(this.result).then((image) => {
@@ -93,6 +97,11 @@ class Input extends React.Component {
             var imageCrop = image.clone();
             imageCrop.crop(j*8,i*8,8,8);
             newImage.composite(imageCrop, 8, 8, {
+              mode: Jimp.BLEND_SOURCE_OVER,
+              opacitySource:1,
+              opacityDest:1
+            });
+            newImage.composite(pixel_image, 4+Math.floor(Math.random()*3),4+Math.floor(Math.random()*3), {
               mode: Jimp.BLEND_SOURCE_OVER,
               opacitySource:1,
               opacityDest:1
