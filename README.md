@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# NameMC Image Splitter
+
+This is a highly customized version of an image splitter I wrote for a friend. It splits a 24x72 pixel png into 27 equal squares, which are then composited onto a Minecraft skin image as the front of the head.
+
+## Requirements
+
+Node.js Version 10 or higher
+
+### This project utilizes the following:
+React
+React Bootstrap
+[Jimp](https://github.com/oliver-moran/jimp)
+[JSZip](https://stuk.github.io/jszip/)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
