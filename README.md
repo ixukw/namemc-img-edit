@@ -7,10 +7,10 @@ This is a highly customized version of an image splitter I wrote for a friend. I
 Node.js Version 10 or higher
 
 ### This project utilizes the following:
-React
-React Bootstrap
-[Jimp](https://github.com/oliver-moran/jimp)
-[JSZip](https://stuk.github.io/jszip/)
+- React
+- React Bootstrap
+- [Jimp](https://github.com/oliver-moran/jimp)
+- [JSZip](https://stuk.github.io/jszip/)
 
 ## Getting Started with Create React App
 
