@@ -104,7 +104,7 @@ class Input extends React.Component {
                 imgOut: join
               });
             });
-            var fileName = `${image_name_base}_${27-(i*9+j)}.${newImage.getExtension()}`;
+            var fileName = `${27-(i*9+j)}.${newImage.getExtension()}`;
             newImage.getBuffer(Jimp.MIME_PNG, (e, buffer) => {
               if (e) alert("getBuffer: "+e);
               zip.file(fileName, buffer);
