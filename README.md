@@ -2,7 +2,9 @@
 
 This is a highly customized version of an image splitter I wrote for a friend. It splits a 24x72 pixel png into 27 equal squares, which are then composited onto a Minecraft skin image as the front of the head.
 
-## Requirements
+https://ixukw.github.io/react
+
+## Build Requirements
 
 Node.js Version 10 or higher
 
