@@ -11,6 +11,8 @@ import Row from 'react-bootstrap/Row';
 
 import Jimp from 'jimp';
 import JSZip from 'jszip';
+import { initGA, PageView, Event } from './Tracking';
+
 
 function Header(props) {
   return (
@@ -60,8 +62,12 @@ class Input extends React.Component {
     this.execute = this.execute.bind(this);
     this.download = this.download.bind(this);
   }
+  componentDidMount() {
+    initGA('UA-192734530-1');
+    PageView();
+  }
   handleFileSelected(r) {
-    console.log(Array.from(r.target.files)[0]);
+    //console.log(Array.from(r.target.files)[0]);
     this.setState({
       inputFile: Array.from(r.target.files),
       imgOut: [],
@@ -81,8 +87,8 @@ class Input extends React.Component {
     var component = this;
     var base_image;
     var pixel_image;
-    var image_name_base = file.name.replace(/\.[^/.]+$/,"");
-    console.log(image_name_base);
+    //var image_name_base = file.name.replace(/\.[^/.]+$/,"");
+    //console.log(image_name_base);
     Jimp.read(map_base).then((image) => {
       base_image = image.clone();
     });
@@ -117,13 +123,13 @@ class Input extends React.Component {
             newImage.getBuffer(Jimp.MIME_PNG, (e, buffer) => {
               if (e) alert("getBuffer: "+e);
               zip.file(fileName, buffer);
-              console.log("zipping "+fileName);
+              //console.log("zipping "+fileName);
             });
           }
         }
       }).catch((e) => {
         alert(e);
-        console.log(e);
+        //console.log(e);
       }).then(() => {
         zip.generateAsync({
           type: "base64"
@@ -132,24 +138,27 @@ class Input extends React.Component {
             downloadHref: "data:application/zip;base64,"+content
           })
         });
-        console.log(component.state.imgOut);
+        //console.log(component.state.imgOut);
         component.setState({
           downloadButton: true
         });
+        Event("split-image-success", "Image splitted and zip created.", "IMG-EDIT");
       });
     }
     reader.readAsArrayBuffer(file);
   }
   download() {
     if (this.state.downloadButton) {
+      Event("download-success", "Zip download", "IMG-EDIT");
       return this.state.downloadHref;
     } else {
       alert("You must input a file or run the program first.");
+      Event("download-failure", "Zip download failure", "IMG-EDIT");
     }
   }
   render() {
     const imgItems = this.state.imgOut.map((image) => {
-      return (<img src={image} className="images"/>);
+      return (<img src={image} className="images" alt="split-img"/>);
     });
     return (
       <div>
