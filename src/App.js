@@ -143,6 +143,7 @@ class Input extends React.Component {
           downloadButton: true
         });
         Event("split-image-success", "Image splitted and zip created.", "IMG-EDIT");
+        component.props.addCount();
       });
     }
     reader.readAsArrayBuffer(file);
@@ -173,6 +174,39 @@ class Input extends React.Component {
   }
 }
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visits: "Loading..."
+    }
+    this.addCount = this.addCount.bind(this);
+  }
+  addCount() {
+    var component = this;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.countapi.xyz/hit/ixukw.github.io/react")
+    xhr.responseType = "json";
+    xhr.onload = function() {
+      console.log(this.response.value);
+      component.setState({
+        visits: this.response.value
+      });
+    }
+    xhr.send();
+  }
+  componentDidMount() {
+    var component = this;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.countapi.xyz/get/ixukw.github.io/react")
+    xhr.responseType = "json";
+    xhr.onload = function() {
+      console.log(this.response.value);
+      component.setState({
+        visits: this.response.value
+      });
+    }
+    xhr.send();
+  }
   render() {
     return (
       <Container className="justify-content-between d-flex flex-column">
@@ -181,12 +215,17 @@ class App extends React.Component {
         </Row>
         <Row className="main d-flex align-items-start flex-row">
           <Col>
-            <Input />
+            <Input addCount={this.addCount}/>
             <div className="download">
           </div>
           </Col>
           <Col>
-            Input 24x72<br />Preset skin file head at pixel 8,8 to 15,15 for 8x8<br/>1. Add input file.<br/>2. Press Go.<br/>3. Download ZIP.
+            Input 24x72
+            <br/>Preset skin file head at pixel 8,8 to 15,15 for 8x8
+            <br/>1. Add input file.
+            <br/>2. Press Go.
+            <br/>3. Download ZIP.
+            <p>Tool Uses: {this.state.visits}</p>
           </Col>
         </Row>
         <Row className="">
