@@ -13,6 +13,8 @@ Node.js Version 10 or higher
 - React Bootstrap
 - [Jimp](https://github.com/oliver-moran/jimp)
 - [JSZip](https://stuk.github.io/jszip/)
+- [CountAPI](https://countapi.xyz/) for a usage counter.
+- [Google Analytics](https://countapi.xyz/) for personal testing purposes.
 
 ## Getting Started with Create React App
 
