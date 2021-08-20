@@ -28,26 +28,6 @@ function Header(props) {
 function Footer(props) {
   return <footer className={footerStyles.footer}>ixukw</footer>;
 }
-/*
-class Console extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      consoleOut: ""
-    }
-    this.addConsoleOut = this.addConsoleOut.bind(this);
-  }
-  addConsoleOut(r) {
-    this.setState({
-      consoleOut: this.state.consoleOut+r+"\n"
-    })
-  }
-  render() {
-    return (
-      <div className="console flex-wrap">{this.state.consoleOut}</div>
-    )
-  }
-}*/
 
 class Input extends React.Component {
   constructor(props) {
